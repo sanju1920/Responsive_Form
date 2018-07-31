@@ -1,0 +1,47 @@
+<h1>Register From </h1>
+
+<form [formGroup]="register" >
+  <label>
+    FirstName:
+    <input type="text"  id="firstName" formControlName="firstName" required pattern="[A-Za-z]{3,}" title="Please Inter only letter" >
+    
+  </label>
+
+  <label>
+    LastName:
+    <input type="text" formControlName="lastName" required pattern="[A-Za-z]{3,}" title="Please Inter only letter">
+  </label>
+ 
+  <label>
+    Email:
+    <input type="text" formControlName="Email" required email >
+  </label>
+   
+  <label>
+    Password:
+    <input type="password" formControlName="password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
+  </label>
+  <label>
+    Re-Password:
+    <input type="password" formControlName="repassword" required>
+    
+  </label>
+  <label>
+    Contact_No:
+    <input type="number" formControlName="contact" required pattern="[0-9]{10}" title="Please Enter 10 Digit Number">
+   
+  </label>
+  <label>
+    Gender(M/F):
+    <input type="text" formControlName="gender" required pattern="[M|F]{1}" title="Please Enter Only M/F" >
+  </label>
+  <label>
+    Employee_ID:
+    <input type="number" formControlName="Eid" required pattern="[0-9]{4}" title="Only 4 Digit required">
+    
+  </label>
+  <label>
+    <button type="submit" [disabled]="!register.valid">Submit</button>
+  </label>
+</form>
+{{register.valid}}
