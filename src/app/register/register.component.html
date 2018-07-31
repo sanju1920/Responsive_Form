@@ -1,47 +1,68 @@
-<h1>Register From </h1>
+ <div class="box">
+  <h1>Register Form</h1>
+<form [formGroup]="form" (ngSubmit)='storeData()'>
+  <div class="form-group">
+    <label for="firstName" >First Name</label>
+    <input type="text" class="form-control" formControlName="firstName"/>
+    <div class="alert alert-danger" *ngIf ="form.controls['firstName'].touched && form.controls['firstName'].invalid">Enter Your name /only letter</div>
+    
+  </div>
 
-<form [formGroup]="register" >
-  <label>
-    FirstName:
-    <input type="text"  id="firstName" formControlName="firstName" required pattern="[A-Za-z]{3,}" title="Please Inter only letter" >
-    
-  </label>
 
-  <label>
-    LastName:
-    <input type="text" formControlName="lastName" required pattern="[A-Za-z]{3,}" title="Please Inter only letter">
-  </label>
- 
-  <label>
-    Email:
-    <input type="text" formControlName="Email" required email >
-  </label>
-   
-  <label>
-    Password:
-    <input type="password" formControlName="password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
-  </label>
-  <label>
-    Re-Password:
-    <input type="password" formControlName="repassword" required>
+  <div class="form-group">
+    <label for="lastName" >Last Name</label>
+    <input type="text" class="form-control" formControlName="lastName"/>
+    <div class="alert alert-danger" *ngIf =" form.controls['lastName'].touched && form.controls['lastName'].invalid">Enter Your Last Name / only Letter</div>
     
-  </label>
-  <label>
-    Contact_No:
-    <input type="number" formControlName="contact" required pattern="[0-9]{10}" title="Please Enter 10 Digit Number">
-   
-  </label>
-  <label>
-    Gender(M/F):
-    <input type="text" formControlName="gender" required pattern="[M|F]{1}" title="Please Enter Only M/F" >
-  </label>
-  <label>
-    Employee_ID:
-    <input type="number" formControlName="Eid" required pattern="[0-9]{4}" title="Only 4 Digit required">
+  </div>
+
+
+  <div class="form-group">
+    <label for="email" >Email</label>
+    <input type="text" class="form-control" formControlName="email"/>
+    <div class="alert alert-danger" *ngIf =" form.controls['email'].touched && form.controls['email'].invalid">Enter valid email</div>
     
-  </label>
-  <label>
-    <button type="submit" [disabled]="!register.valid">Submit</button>
-  </label>
+  </div>
+
+
+  <div class="form-group">
+    <label for="password" >Password</label>
+    <input type="password" class="form-control" formControlName="password"/>
+    <div class="alert alert-danger" *ngIf =" form.controls['password'].touched && form.controls['password'].invalid">Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters</div>
+  </div>
+
+
+  <div class="form-group">
+    <label for="cnf" > Confirm Password</label>
+    <input type="password" class="form-control" formControlName="cnf"/>
+    <div class="alert alert-danger" *ngIf =" form.controls['cnf'].touched && form.controls['cnf'].value != form.controls['password'].value">Enter Same Password</div>
+  </div>
+
+
+  <div class="form-group">
+    <label for="gender" >Gender</label>
+    <select class="form-control" formControlName="gender">
+      <option value="Male"> Male</option>
+      <option value="Female">Female</option>
+    </select>
+    <div class="alert alert-danger" *ngIf ="form.controls['gender'].touched && form.controls['gender'].invalid">Please Select One</div>
+  </div>
+
+
+  <div class="form-group">
+    <label for="contact" >Contact No</label>
+    <input type="number" class="form-control" formControlName="contact"/>
+    <div class="alert alert-danger" *ngIf ="form.controls['contact'].touched && form.controls['contact'].invalid">Enter 10 Digit Number</div>
+  </div>
+
+
+  <div class="form-group">
+    <label for="eid" >Empolyee ID</label>
+    <input type="number" class="form-control" formControlName="eid"/>
+    <div class="alert alert-danger" *ngIf ="form.controls['eid'].touched && form.controls['eid'].invalid">Enter 4 Digit Number</div>
+  </div>
+  
+  <button  type="submit" class="btn btn-primary"[disabled]="!form.valid"> Submit</button>
+
 </form>
-{{register.valid}}
+</div> 

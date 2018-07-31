@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "MyForm": {
+    "MyApp": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/MyForm",
+            "outputPath": "dist/MyApp",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -50,18 +50,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "MyForm:build"
+            "browserTarget": "MyApp:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "MyForm:build:production"
+              "browserTarget": "MyApp:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "MyForm:build"
+            "browserTarget": "MyApp:build"
           }
         },
         "test": {
@@ -95,7 +95,7 @@
         }
       }
     },
-    "MyForm-e2e": {
+    "MyApp-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "architect": {
@@ -103,11 +103,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "MyForm:serve"
+            "devServerTarget": "MyApp:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "MyForm:serve:production"
+              "devServerTarget": "MyApp:serve:production"
             }
           }
         },
@@ -123,5 +123,5 @@
       }
     }
   },
-  "defaultProject": "MyForm"
+  "defaultProject": "MyApp"
 }
