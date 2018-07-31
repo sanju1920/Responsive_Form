@@ -5,11 +5,11 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './view.component.html',
   styleUrls: ['./view.component.css']
 })
-export class ViewComponent implements OnInit {
-
+export class ViewComponent   {
+  data = JSON.parse(localStorage.getItem('data'));
   constructor() { }
-
-  ngOnInit() {
-  }
+  t='ok';
+  
+  
 
 }

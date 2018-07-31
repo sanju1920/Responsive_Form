@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup,FormBuilder,FormControl,Validator, Validators} from '@angular/forms'
+import { FormGroup,FormBuilder,FormControl,Validator, Validators} from '@angular/forms';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -9,7 +10,7 @@ import { FormGroup,FormBuilder,FormControl,Validator, Validators} from '@angular
 })
 export class RegisterComponent{
   public form:FormGroup;
-
+  router:Router
   constructor( private builder:FormBuilder) {
     this.form =this.builder.group({
       firstName:['',[Validators.required,Validators.pattern('[A-Za-z]*')]],
@@ -28,6 +29,7 @@ export class RegisterComponent{
      localStorage.setItem('data',JSON.stringify(this.form.value))
     //  var result =localStorage.getItem('data');
      //console.log(result);
+  this.router.navigate(['view']);
    }
 
   
