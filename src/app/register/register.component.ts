@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup,FormBuilder,FormControl,Validator, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
+import { RecordsService } from '../records.service';
 
 
 @Component({
@@ -10,8 +11,14 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent{
   public form:FormGroup;
-  router:Router
-  constructor( private builder:FormBuilder) {
+  eye;
+  typechange;
+  constructor( private builder:FormBuilder,private routes:Router,private record:RecordsService) {
+    this.eye="glyphicon-eye-open";
+    this.typechange="passowrd";
+    this.showPassword()
+    this.showPassword()
+
     this.form =this.builder.group({
       firstName:['',[Validators.required,Validators.pattern('[A-Za-z]*')]],
       lastName:['',[Validators.required,Validators.pattern('[A-Za-z]*')]],
@@ -26,12 +33,26 @@ export class RegisterComponent{
    }
    storeData(){
      console.log(this.form.value);
-     localStorage.setItem('data',JSON.stringify(this.form.value))
-    //  var result =localStorage.getItem('data');
-     //console.log(result);
-  this.router.navigate(['view']);
+     this.record.setRecord(this.form.value)
+    this.routes.navigate(["/view"]);
    }
+   showPassword(){
+     
+    if(this.eye=="glyphicon-eye-open"){
+            this.typechange="text";
+            
+    }else{
+      this.typechange="password";
+      
+    }
+    if(this.eye=="glyphicon-eye-open"){
+      this.eye="glyphicon-eye-close"
+      
+}else{
+  this.eye="glyphicon-eye-open"
 
+}
+   }
   
 
 }

@@ -6,6 +6,7 @@ import { RegisterComponent } from './register/register.component';
 import { ViewComponent } from './view/view.component';
 import { EditFormComponent } from './edit-form/edit-form.component';
 import { RouterModule , Routes} from '@angular/router'
+import { RecordsService } from './records.service';
 
 
 const routes :Routes= [
@@ -42,7 +43,7 @@ component:RegisterComponent
     RouterModule.forRoot(routes)
     
   ],
-  providers: [],
+  providers: [RecordsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

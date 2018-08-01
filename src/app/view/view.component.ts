@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { RecordsService } from '../records.service';
+import { Router } from '../../../node_modules/@angular/router';
 
 @Component({
   selector: 'app-view',
@@ -6,10 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./view.component.css']
 })
 export class ViewComponent   {
-  data = JSON.parse(localStorage.getItem('data'));
-  constructor() { }
-  t='ok';
+  data ;
+  constructor( private record:RecordsService,private routes:Router) {
+    this.data=record.getRecord();
+  //  console.log(this.data)
+   }
+   Edit(){
+     this.routes.navigate(['/edit'])
+   }
   
-  
-
 }

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup,FormBuilder,FormControl,Validator, Validators} from '@angular/forms';
+import { Router} from '@angular/router';
+import { RecordsService } from '../records.service';
 @Component({
   selector: 'app-edit-form',
   templateUrl: './edit-form.component.html',
@@ -7,9 +9,16 @@ import { FormGroup,FormBuilder,FormControl,Validator, Validators} from '@angular
 })
 export class EditFormComponent {
   public form:FormGroup;
+  eye;
+  typechange;
   data;
-  constructor( private builder:FormBuilder) {
-    this.data =JSON.parse(localStorage.getItem('data'));
+  constructor( private builder:FormBuilder,private routes:Router,private record:RecordsService) {
+    this.data =record.getRecord();
+    this.eye="glyphicon-eye-open";
+    this.typechange="passowrd";
+    this.showPassword()
+    this.showPassword()
+   // console.log(this.data)
     this.form =this.builder.group({
       firstName:[this.data.firstName,[Validators.required,Validators.pattern('[A-Za-z]*')]],
       lastName:[this.data.lastName,[Validators.required,Validators.pattern('[A-Za-z]*')]],
@@ -24,8 +33,27 @@ export class EditFormComponent {
    }
    storeData(){
      console.log(this.form.value);
-     localStorage.setItem('data',JSON.stringify(this.form.value))
+    
+     this.record.setRecord(this.form.value);
+      this.routes.navigate(['/view'])
    
+   }
+   showPassword(){
+     
+    if(this.eye=="glyphicon-eye-open"){
+            this.typechange="text";
+            
+    }else{
+      this.typechange="password";
+      
+    }
+    if(this.eye=="glyphicon-eye-open"){
+      this.eye="glyphicon-eye-close"
+      
+}else{
+  this.eye="glyphicon-eye-open"
+
+}
    }
 
 }
