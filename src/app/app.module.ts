@@ -4,7 +4,6 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms'
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
 import { ViewComponent } from './view/view.component';
-import { EditFormComponent } from './edit-form/edit-form.component';
 import { RouterModule , Routes} from '@angular/router'
 import { RecordsService } from './records.service';
 
@@ -23,8 +22,8 @@ component:RegisterComponent
 },
 {
   path:'edit',
-  component:EditFormComponent
-}
+  component:RegisterComponent
+  }
 ];
 
 
@@ -33,7 +32,7 @@ component:RegisterComponent
     AppComponent,
     RegisterComponent,
     ViewComponent,
-    EditFormComponent,
+
   
   ],
   imports: [

@@ -11,6 +11,7 @@ import { RecordsService } from '../records.service';
 })
 export class RegisterComponent{
   public form:FormGroup;
+  typeoffrom:string='Edit';
   eye;
   typechange;
   constructor( private builder:FormBuilder,private routes:Router,private record:RecordsService) {
@@ -18,18 +19,32 @@ export class RegisterComponent{
     this.typechange="passowrd";
     this.showPassword()
     this.showPassword()
-
+    var data = record.getRecord();
+    
+    if(data === undefined){
+        data={
+          firstName:'',
+          lastName:'',
+          email:'',
+          passowrd:'',
+          cnf:'',
+          gender:'',
+          contact:'',
+          eid:''
+        }
+       this.typeoffrom ="Register"
+    }
     this.form =this.builder.group({
-      firstName:['',[Validators.required,Validators.pattern('[A-Za-z]*')]],
-      lastName:['',[Validators.required,Validators.pattern('[A-Za-z]*')]],
-      email:['',[Validators.required,Validators.email]],
-      password:['',[Validators.required,Validators.pattern('(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}')]],
-      cnf:[''],
-      gender:['',Validators.required],
-      contact:['',[Validators.required,Validators.pattern('[0-9].{9}')]],
-      eid:['',[Validators.required,Validators.pattern('[0-9].{3}')]]
+      firstName:[data.firstName,[Validators.required,Validators.pattern('[A-Za-z]*')]],
+      lastName:[data.firstName,[Validators.required,Validators.pattern('[A-Za-z]*')]],
+      email:[data.email,[Validators.required,Validators.email]],
+      password:[data.password,[Validators.required,Validators.pattern('(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}')]],
+      cnf:[data.cnf],
+      gender:[data.gender,Validators.required],
+      contact:[data.contact,[Validators.required,Validators.pattern('[0-9].{9}')]],
+      eid:[data.eid,[Validators.required,Validators.pattern('[0-9].{3}')]]
     });
-   // console.log(this.form.controls['firstName'].errors);
+   
    }
    storeData(){
      console.log(this.form.value);
